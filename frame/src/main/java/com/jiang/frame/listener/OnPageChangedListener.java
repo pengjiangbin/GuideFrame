@@ -1,4 +1,4 @@
-package com.jiang.guideframe.guide.listener;
+package com.jiang.frame.listener;
 
 public interface OnPageChangedListener {
 

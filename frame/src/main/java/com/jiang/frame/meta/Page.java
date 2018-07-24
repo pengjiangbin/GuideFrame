@@ -1,10 +1,8 @@
-package com.jiang.guideframe.guide.meta;
+package com.jiang.frame.meta;
 
 import android.support.annotation.LayoutRes;
 import android.view.View;
 import android.view.animation.Animation;
-
-import com.jiang.guideframe.guide.Builder;
 
 import java.util.List;
 

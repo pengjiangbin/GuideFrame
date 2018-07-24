@@ -1,4 +1,4 @@
-package com.jiang.guideframe.guide;
+package com.jiang.frame;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
@@ -38,9 +38,13 @@ public class Guide {
         return this;
     }
 
-    public Guide dismiss(){
+    public Guide dismiss() {
         getDelegate().dismiss();
         return this;
+    }
+
+    public boolean enable() {
+        return getDelegate().enable();
     }
 
 }

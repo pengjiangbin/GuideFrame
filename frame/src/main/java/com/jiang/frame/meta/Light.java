@@ -1,10 +1,10 @@
-package com.jiang.guideframe.guide.meta;
+package com.jiang.frame.meta;
 
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
 
-import com.jiang.guideframe.guide.util.ViewUtils;
+import com.jiang.frame.util.ViewUtils;
 
 public class Light {
     private View lightView;

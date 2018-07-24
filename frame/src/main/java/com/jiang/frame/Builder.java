@@ -1,12 +1,12 @@
-package com.jiang.guideframe.guide;
+package com.jiang.frame;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.jiang.guideframe.guide.listener.OnPageChangedListener;
-import com.jiang.guideframe.guide.listener.OnStateChangedListener;
-import com.jiang.guideframe.guide.meta.Page;
+import com.jiang.frame.listener.OnPageChangedListener;
+import com.jiang.frame.listener.OnStateChangedListener;
+import com.jiang.frame.meta.Page;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.jiang.guideframe.guide.meta;
+package com.jiang.frame.meta;
 
 import android.support.annotation.IntDef;
 

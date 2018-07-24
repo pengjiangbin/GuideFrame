@@ -1,4 +1,4 @@
-package com.jiang.guideframe.guide;
+package com.jiang.frame;
 
 import android.content.Context;
 import android.graphics.BlurMaskFilter;
@@ -16,9 +16,10 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
 
-import com.jiang.guideframe.guide.meta.Light;
-import com.jiang.guideframe.guide.meta.Page;
-import com.jiang.guideframe.guide.meta.Shape;
+import com.jiang.frame.listener.OnDismissListener;
+import com.jiang.frame.meta.Light;
+import com.jiang.frame.meta.Page;
+import com.jiang.frame.meta.Shape;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class Frame extends FrameLayout {
     private Page page;
     private Xfermode xfermode;
     private Paint paint;
+    private OnDismissListener dismissListener;
 
     public Frame(@NonNull Context context, Page page) {
         super(context);
@@ -56,7 +58,7 @@ public class Frame extends FrameLayout {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(page.isArbitrary()){
+                if (page.isArbitrary()) {
                     dismiss();
                 }
             }
@@ -103,6 +105,10 @@ public class Frame extends FrameLayout {
         }
     }
 
+    public void setOnDismissListener(OnDismissListener listener) {
+        this.dismissListener = listener;
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -138,7 +144,7 @@ public class Frame extends FrameLayout {
                 }
             });
             startAnimation(exitAnimation);
-        }else{
+        } else {
             remove();
         }
     }
@@ -146,6 +152,10 @@ public class Frame extends FrameLayout {
     private void remove() {
         if (getParent() != null) {
             ((ViewGroup) getParent()).removeView(this);
+            if(dismissListener!=null){
+                dismissListener.onDismiss();
+            }
         }
     }
+
 }

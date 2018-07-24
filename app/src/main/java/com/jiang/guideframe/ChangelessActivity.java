@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.jiang.guideframe.guide.Guide;
-import com.jiang.guideframe.guide.meta.GuidePage;
+import com.jiang.frame.Guide;
+import com.jiang.frame.GuidePage;
+
 
 public class ChangelessActivity extends AppCompatActivity {
 

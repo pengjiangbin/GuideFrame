@@ -1,4 +1,4 @@
-package com.jiang.guideframe.guide.util;
+package com.jiang.frame.util;
 
 import android.app.Activity;
 import android.content.Context;

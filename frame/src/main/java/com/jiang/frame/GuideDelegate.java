@@ -1,4 +1,4 @@
-package com.jiang.guideframe.guide;
+package com.jiang.frame;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.jiang.guideframe.guide.listener.OnPageChangedListener;
-import com.jiang.guideframe.guide.listener.OnStateChangedListener;
-import com.jiang.guideframe.guide.meta.Page;
+import com.jiang.frame.listener.OnDismissListener;
+import com.jiang.frame.listener.OnPageChangedListener;
+import com.jiang.frame.listener.OnStateChangedListener;
+import com.jiang.frame.meta.Page;
 
 import java.util.List;
+
 
 public class GuideDelegate {
     private static final String SP_NAME = "guide_frame";
@@ -91,9 +93,23 @@ public class GuideDelegate {
         });
     }
 
+    public void resetLabel() {
+        resetLabel(label);
+    }
+
+    public void resetLabel(String label) {
+        sp.edit().remove(label).apply();
+    }
+
     private void showPage() {
         Page page = pages.get(currentPage);
         Frame frame = new Frame(activity, page);
+        frame.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                showNextPage();
+            }
+        });
         addContentToLayout(frame, page);
         parentView.addView(frame, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -123,15 +139,27 @@ public class GuideDelegate {
                     cancelView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            frame.dismiss();
+                            removeFrame(frame);
                         }
                     });
                 }
             }
         }
         frame.addView(view, params);
+    }
 
+    private void removeFrame(Frame frame) {
+        frame.dismiss();
+        if (!defaultAnchor) {
+//            parentView.removeView();
+        }
+    }
 
+    private void showNextPage() {
+        if (currentPage < pages.size()-1) {
+            currentPage++;
+            showPage();
+        }
     }
 
     public void showPage(int position) {
@@ -143,6 +171,11 @@ public class GuideDelegate {
 
     public void dismiss() {
 
+    }
+
+    public boolean enable() {
+        final int showedCount = sp.getInt(label, 0);
+        return always || showedCount < showCount;
     }
 
 

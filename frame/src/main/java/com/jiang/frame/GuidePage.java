@@ -1,7 +1,13 @@
-package com.jiang.guideframe.guide.meta;
+package com.jiang.frame;
+
+
 
 import android.view.View;
 import android.view.animation.Animation;
+
+import com.jiang.frame.meta.Light;
+import com.jiang.frame.meta.Page;
+import com.jiang.frame.meta.Shape;
 
 import java.util.ArrayList;
 import java.util.List;
